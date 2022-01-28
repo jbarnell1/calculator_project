@@ -9,6 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #DDDDDD;
+    font-family: sans-serif;
 }
 
 .calc-body {
@@ -71,6 +72,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 32px;
+    cursor: pointer;
 }
 
 .eval {
