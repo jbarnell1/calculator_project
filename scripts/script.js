@@ -1,5 +1,3 @@
-
-
 // add dummy text to display
 const current = document.querySelector("div.displayContents");
 const history = document.querySelector(".history");
@@ -43,7 +41,7 @@ function handleInput(e) {
     a button or operator was pressed, and calls
     the correct function */
     let btn = e.target.className;
-    if (btn === 'inputButton') {
+    if (btn.includes('inputButton')) {
         btn = [...e.target.children][0].className;
     }
     if (isNaN(btn)) {
@@ -62,6 +60,7 @@ function handleInput(e) {
 
 function numPressed(btn) {
     opJustPressed = false;
+    evalJustPressed = false;
     if (btn === '.' && !decimalAllowed) {
         return;
     } else if (btn === '.' && decimalAllowed) {
@@ -148,12 +147,12 @@ function operate(a,b, operator) {
     decimalAllowed = true;
     switch (operator) {
         case "add":
-            return +a + +b;
+            return parseFloat((+a + +b).toFixed(12));
         case "subtract":
-            return a-b;
+            return parseFloat((a-b).toFixed(12));
         case "multiply":
-            return a*b;
+            return parseFloat((a*b).toFixed(12));
         case "divide":
-            return a/b;
+            return parseFloat((a/b).toFixed(12));
     }
 }
