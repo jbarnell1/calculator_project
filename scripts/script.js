@@ -31,9 +31,28 @@ function setup() {
     // set up event listener for equals sign
     const equals = document.querySelector(".eval");
     equals.addEventListener("click", evaluate);
+
+    // add keyboard support
+    childrenNodes = new Array();
+    const keys = document.querySelectorAll('.inputButton');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    document.querySelector('.eval').addEventListener('transitionend', removeTransition);
+    console.log(keys);
+    window.addEventListener('keydown', handleKeyboardInput);
 }
 
 setup();
+
+function removeTransition(e) {
+    if (e.propertyName !== 'background-color') return;
+    e.target.classList.remove("keyPressed");
+}
+
+function handleKeyboardInput(e) {
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    key.classList.add("keyPressed");
+    key.click();
+}
 
 
 function handleInput(e) {
